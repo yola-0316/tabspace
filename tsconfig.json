@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "target": "es5",
+    "module": "esnext",
+    "declaration": true,
+    "outDir": "./lib/",
+    "baseUrl": "src",
+    "rootDir": "./src/",
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "declarationDir": "./typings",
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "jsx": "react"
+  }
+}

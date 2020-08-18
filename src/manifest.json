@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "your",
+  "version": "0.1.0",
+  "description": "desc",
+  "browser_action": {
+    "default_title": "Boilerplate",
+    "default_popup": "index.html"
+  }
+}
