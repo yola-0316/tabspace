@@ -13,15 +13,24 @@ module.exports = {
   devtool: 'cheap-module-source-map',
   entry: {
     app: './src/app/index.tsx',
-    // background: './src/background/index.js',
-    // contentscript: './src/contentscript/index.js',
+    background: './src/background/index.ts',
+    contentscript: './src/contentscript/index.ts',
   },
   output: {
     path: resolve('app'),
     filename: '[name].js',
   },
   plugins: [
-    new ExtensionReloader(),
+    new ExtensionReloader({
+      manifest: resolve('src/manifest.json'),
+      port: 9090,
+      reloadPage: true,
+      entries: {
+        contentScript: 'contentscript',
+        background: 'background',
+        extensionPage: 'app',
+      },
+    }),
     new webpack.DefinePlugin({
       DEBUG: mode === 'development',
       PRODUCTION: mode !== 'development',
@@ -38,14 +47,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/app/index.html',
-      excludeChunks: ['background', 'content', 'exchanger'],
+      excludeChunks: ['background', 'contentscript'],
       inject: true,
     }),
   ],
   module: {
     rules: [
       {
-        test: /\.tsx$/,
+        test: /\.(tsx?|jsx?)$/,
         use: ['babel-loader'],
       },
       {
@@ -53,11 +62,11 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpe?g|gif)$/,
         use: ['file-loader'],
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        test: /\.(woff2?|eot|ttf|otf)$/,
         use: ['file-loader'],
       },
     ],

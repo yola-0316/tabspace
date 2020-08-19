@@ -1,10 +1,21 @@
 {
   "manifest_version": 2,
-  "name": "your",
+  "name": "TabSpace",
   "version": "0.1.0",
-  "description": "desc",
+  "description": "TabSpace is a tab manager like OneSpace with enhanced feature.",
   "browser_action": {
-    "default_title": "Boilerplate",
-    "default_popup": "index.html"
-  }
+    "default_title": "TabSpace",
+    "default_popup": "index.html#/tabspace/app"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["contentscript.js"]
+    }
+  ],
+  "options_page": "index.html#/tabspace/options",
+  "permissions": []
 }

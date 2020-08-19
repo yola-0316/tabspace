@@ -5,7 +5,8 @@
 
 # Program Language Rutime
 node_modules
+*.log
 
 # Project
-dist
-*-test
+/app
+onetab.list
